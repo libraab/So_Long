@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 12:56:21 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 13:57:14 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,14 +140,15 @@ int	main()
     
     i = 0;
 	j = 0;
-	k = 50;
+	k = 0;
 	s.mlx_ptr = mlx_init();
 	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 500, "Coucou c'est nous");
 	mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
 	img = mlx_xpm_file_to_image(s.mlx_ptr, relative_path, &img_width, &img_height);
+	//ft_background(s, img, j, i);
 	while(i < 20)
 	{
-		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 0);
+		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 15);
 		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 450);
 		i++;
 		j = j + 49;
@@ -161,15 +162,35 @@ int	main()
 		j++;
 		i = i + 20;
 	}
-	while (k < 450)
+	while (k < 15)
     {
-        j = 40;
-        while(j < 930)
+        j = 0;
+        while(j < 1000)
         {
-            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0x008000);
+            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0xAD452F);
             j++;
         }
         k++;
     }
+	while (k < 15)
+    {
+        j = 450;
+        while(j < 1000)
+        {
+            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0xAD452F);
+            j++;
+        }
+        k++;
+    }
+	/*while (k < 450)
+    {
+        j = 49;
+        while(j < 930)
+        {
+            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0xAD452F);
+            j++;
+        }
+        k++;
+    }*/
 	mlx_loop(s.mlx_ptr);
 }
