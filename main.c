@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 17:41:12 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 20:17:54 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,6 @@
 #include "so_long.h"
 #include <unistd.h>
 #include <stdlib.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	long	x;
-    
-    x = nb;
-	if (x < 0)
-	{
-		x = x * -1;
-		ft_putchar('-');
-	}
-	if (x > 9)
-	{
-		ft_putnbr(x / 10);
-		ft_putnbr(x % 10);
-	}
-	else
-	{
-		ft_putchar(x + '0');
-	}
-}
 
 /*void	ft_letters(int key)
 {
@@ -134,14 +108,10 @@ int	main()
 	int 	img1_height;
 	int 	img2_width;
 	int 	img2_height;
-	//int 	img3_width;
-	//int 	img3_height;
 	char	*relative_path1 = "./chocolate.xpm";
-	char	*relative_path2 = "./chocolate_v.xpm";
-	//char	*relative_path3 = "./grass.xpm";
+	char	*relative_path2 = "./small-chocolate.xpm";
 	void	*img1;
 	void	*img2;
-	//void	*img3;
 	int		i;
 	int		j;
 	int		k;
@@ -150,11 +120,10 @@ int	main()
 	j = 0;
 	k = 0;
 	s.mlx_ptr = mlx_init();
-	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 525, "Asma's Game");
+	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 540, "Asma's World");
 	mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
 	img1 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path1, &img1_width, &img1_height);
 	img2 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path2, &img2_width, &img2_height);
-	//img3 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path3, &img3_width, &img3_height);
 	ft_background(s, img1, img2, i, j);
 	mlx_loop(s.mlx_ptr);
 }

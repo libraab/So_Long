@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 20:19:57 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/07/15 20:16:22 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/07/15 20:16:39 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef SO_LONG_H
-
-#define SO_LONG_H
 
 #include "mlx.h"
 #include "so_long.h"
 #include <unistd.h>
 #include <stdlib.h>
 
-typedef struct asma
+void	ft_putchar(char c)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		step;
-}				bank;
+	write(1, &c, 1);
+}
 
-void    ft_background(bank s, void *img, void *img2, int x, int y);
-void	ft_figure(int key, void *s);
-int		deal_key(int key, void *param);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-
-#endif
+void	ft_putnbr(int nb)
+{
+	long	x;
+    
+    x = nb;
+	if (x < 0)
+	{
+		x = x * -1;
+		ft_putchar('-');
+	}
+	if (x > 9)
+	{
+		ft_putnbr(x / 10);
+		ft_putnbr(x % 10);
+	}
+	else
+	{
+		ft_putchar(x + '0');
+	}
+}
