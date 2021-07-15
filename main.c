@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 15:58:38 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 17:41:12 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,14 @@ int	main()
 	int 	img1_height;
 	int 	img2_width;
 	int 	img2_height;
-	char	*relative_path1 = "./wall_h.xpm";
-	char	*relative_path2 = "./wall_v.xpm";
+	//int 	img3_width;
+	//int 	img3_height;
+	char	*relative_path1 = "./chocolate.xpm";
+	char	*relative_path2 = "./chocolate_v.xpm";
+	//char	*relative_path3 = "./grass.xpm";
 	void	*img1;
 	void	*img2;
+	//void	*img3;
 	int		i;
 	int		j;
 	int		k;
@@ -146,56 +150,11 @@ int	main()
 	j = 0;
 	k = 0;
 	s.mlx_ptr = mlx_init();
-	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 529, "Coucou c'est nous");
+	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 525, "Asma's Game");
 	mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
 	img1 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path1, &img1_width, &img1_height);
 	img2 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path2, &img2_width, &img2_height);
+	//img3 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path3, &img3_width, &img3_height);
 	ft_background(s, img1, img2, i, j);
-	/*while(i < 20)
-	{
-		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 15);
-		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 450);
-		i++;
-		j = j + 49;
-	}
-	i = 49;
-	j = 0;
-	while(j < 20)
-	{
-		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, 0, i);
-		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, 930, i);
-		j++;
-		i = i + 20;
-	}
-	while (k < 15)
-    {
-        j = 0;
-        while(j < 1000)
-        {
-            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0xAD452F);
-            j++;
-        }
-        k++;
-    }
-	while (k < 15)
-    {
-        j = 450;
-        while(j < 1000)
-        {
-            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0xAD452F);
-            j++;
-        }
-        k++;
-    }
-	while (k < 450)
-    {
-        j = 49;
-        while(j < 930)
-        {
-            mlx_pixel_put(s.mlx_ptr, s.win_ptr, j, k, 0xAD452F);
-            j++;
-        }
-        k++;
-    }*/
 	mlx_loop(s.mlx_ptr);
 }
