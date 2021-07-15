@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 15:00:45 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 15:54:33 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ typedef struct asma
 	int		step;
 }				bank;
 
-void    ft_background(bank s, void *img, int x, int y);
+void    ft_background(bank s, void *img, void *img2, int x, int y);
 
 #endif

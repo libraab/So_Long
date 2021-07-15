@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 14:59:43 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 15:58:38 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,14 @@ int	deal_key(int key, void *param)
 int	main()
 {
 	bank	s;
-	int 	img_width;
-	int 	img_height;
-	char	*relative_path = "./brick_wall_49x49.xpm";
-	void	*img;
+	int 	img1_width;
+	int 	img1_height;
+	int 	img2_width;
+	int 	img2_height;
+	char	*relative_path1 = "./wall_h.xpm";
+	char	*relative_path2 = "./wall_v.xpm";
+	void	*img1;
+	void	*img2;
 	int		i;
 	int		j;
 	int		k;
@@ -142,10 +146,11 @@ int	main()
 	j = 0;
 	k = 0;
 	s.mlx_ptr = mlx_init();
-	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 500, "Coucou c'est nous");
+	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 529, "Coucou c'est nous");
 	mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
-	img = mlx_xpm_file_to_image(s.mlx_ptr, relative_path, &img_width, &img_height);
-	ft_background(s, img, i, j);
+	img1 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path1, &img1_width, &img1_height);
+	img2 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path2, &img2_width, &img2_height);
+	ft_background(s, img1, img2, i, j);
 	/*while(i < 20)
 	{
 		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 15);
