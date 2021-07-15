@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 12:14:52 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 15:00:45 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 #define SO_LONG_H
 
+#include "mlx.h"
+#include "so_long.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 typedef struct asma
 {
@@ -22,5 +26,6 @@ typedef struct asma
 	int		step;
 }				bank;
 
+void    ft_background(bank s, void *img, int x, int y);
 
 #endif

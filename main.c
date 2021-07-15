@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 13:57:14 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/07/15 14:59:43 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ int	main()
 	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 500, "Coucou c'est nous");
 	mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
 	img = mlx_xpm_file_to_image(s.mlx_ptr, relative_path, &img_width, &img_height);
-	//ft_background(s, img, j, i);
-	while(i < 20)
+	ft_background(s, img, i, j);
+	/*while(i < 20)
 	{
 		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 15);
 		mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, img, j, 450);
@@ -182,7 +182,7 @@ int	main()
         }
         k++;
     }
-	/*while (k < 450)
+	while (k < 450)
     {
         j = 49;
         while(j < 930)
