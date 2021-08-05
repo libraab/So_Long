@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/07/15 20:17:54 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/05 17:34:07 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_figure(int key, void *s)
 {
 	int i;
 	int	j;
-	bank	*d;
+	t_bank	*d;
 	static int	pos_x = 200;
 	static int	pos_y = 200;
     
@@ -103,15 +103,7 @@ int	deal_key(int key, void *param)
 
 int	main()
 {
-	bank	s;
-	int 	img1_width;
-	int 	img1_height;
-	int 	img2_width;
-	int 	img2_height;
-	char	*relative_path1 = "./chocolate.xpm";
-	char	*relative_path2 = "./small-chocolate.xpm";
-	void	*img1;
-	void	*img2;
+	t_bank	s;
 	int		i;
 	int		j;
 	int		k;
@@ -121,9 +113,10 @@ int	main()
 	k = 0;
 	s.mlx_ptr = mlx_init();
 	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 540, "Asma's World");
-	mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
-	img1 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path1, &img1_width, &img1_height);
-	img2 = mlx_xpm_file_to_image(s.mlx_ptr, relative_path2, &img2_width, &img2_height);
-	ft_background(s, img1, img2, i, j);
+	//mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
+	s.wall1.img = mlx_xpm_file_to_image(s.mlx_ptr, "./choc.xpm", &s.wall1.width, &s.wall1.height);
+	s.wall2.img = mlx_xpm_file_to_image(s.mlx_ptr, "./choc2.xpm", &s.wall2.width, &s.wall2.height);
+	s.asma.img = mlx_xpm_file_to_image(s.mlx_ptr, "./f.xpm", &s.asma.width, &s.asma.height);
+	ft_background(&s, i, j);
 	mlx_loop(s.mlx_ptr);
 }
