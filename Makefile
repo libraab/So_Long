@@ -6,7 +6,7 @@
 #    By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/09 17:44:09 by bledda            #+#    #+#              #
-#    Updated: 2021/08/09 19:21:22 by bledda           ###   ########.fr        #
+#    Updated: 2021/08/09 20:45:39 by bledda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,19 @@ CC					= gcc
 CFLAGS  			= -Wall -Wextra -Werror
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
-LIBS				= -L ./libft -lft -lmlx -lXext -lX11
+
+OBJ					= ${OBJS}
+
+UNAME_S				= $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+	LIBS 			= -L ./libft -lft -lmlx -lXext -lX11
+endif
+ifeq ($(UNAME_S),Darwin)
+	LIBS 			= -L ./libft -lft -lmlx -framework OpenGL -framework AppKit -lz
+endif
 
 COMPIL	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
-
-OBJ					= ${OBJS} ${OBJS_INC} ${OBJS_UTILS} ${OBJS_PARSER_ARGS} ${OBJS_PARSER_CMDS} ${OBJS_PARSER_REDI} ${CROSS}
 #####################################################################################
 
 #	RULES	#########################################################################
