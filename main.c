@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/05 17:34:07 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/09 12:00:48 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,55 @@ int	deal_key(int key, void *param)
 	return (0);
 }
 
+typedef struct	s_data {
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+void	ft_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+unsigned int	ft_pixel_get(t_data *data, int x, int y)
+{
+	return *(unsigned int*)(data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8)));
+}
+
+void	ft_put_image_to_image(t_asma *dest, t_asma *src, int x, int y)
+{
+	t_data img_src;
+	t_data img_dst;
+	int	xx;
+	int yy;
+
+	printf("in\n");
+	img_src.addr = mlx_get_data_addr(src->img, &img_src.bits_per_pixel, &img_src.line_length,
+								&img_src.endian);
+	img_dst.addr = mlx_get_data_addr(dest->img, &img_dst.bits_per_pixel, &img_dst.line_length,
+								&img_dst.endian);
+	
+	yy = 0;
+	while (yy < src->height)
+	{
+		xx = 0;
+		while (xx < src->width)
+		{
+			if(xx + x > dest->width || xx + x < 0 || yy + y > dest->height || yy + y < 0)
+				printf("error asma tu dec\n");
+			else
+				ft_pixel_put(&img_dst, xx + x, yy + y, ft_pixel_get(&img_src, xx, yy));
+			xx++;
+		}
+		yy++;
+	}
+}
+
 int	main()
 {
 	t_bank	s;
@@ -111,12 +160,19 @@ int	main()
     i = 0;
 	j = 0;
 	k = 0;
+	t_asma	test;
 	s.mlx_ptr = mlx_init();
 	s.win_ptr = mlx_new_window(s.mlx_ptr, 980, 540, "Asma's World");
-	//mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
-	s.wall1.img = mlx_xpm_file_to_image(s.mlx_ptr, "./choc.xpm", &s.wall1.width, &s.wall1.height);
+	// mlx_key_hook(s.win_ptr, deal_key, (void *)&s);
+	// s.wall1.img = mlx_xpm_file_to_image(s.mlx_ptr, "./choc.xpm", &s.wall1.width, &s.wall1.height);
 	s.wall2.img = mlx_xpm_file_to_image(s.mlx_ptr, "./choc2.xpm", &s.wall2.width, &s.wall2.height);
-	s.asma.img = mlx_xpm_file_to_image(s.mlx_ptr, "./f.xpm", &s.asma.width, &s.asma.height);
-	ft_background(&s, i, j);
+	// s.asma.img = mlx_xpm_file_to_image(s.mlx_ptr, "./f.xpm", &s.asma.width, &s.asma.height);
+	// ft_background(&s, i, j);
+	//char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);
+	test.height = 1000;
+	test.width = 1000;
+	test.img = mlx_new_image(s.mlx_ptr, test.height, test.width);
+	ft_put_image_to_image(&test, &s.wall2, 0, 0);
+	mlx_put_image_to_window(s.mlx_ptr, s.win_ptr, test.img, -30, -700);
 	mlx_loop(s.mlx_ptr);
 }
