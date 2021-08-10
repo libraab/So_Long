@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 18:54:18 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/10 18:18:05 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/10 18:41:45 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	ft_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + y * data->line_length + x * (data->bits_per_pixel / 8);
-	*(unsigned int*)dst = color;
+	if (color > 0)
+		*(unsigned int*)dst = color;
 }
 
 static unsigned int	ft_pixel_get(t_data *data, int x, int y)

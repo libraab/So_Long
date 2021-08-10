@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/10 18:35:29 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/10 18:40:07 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	ft_print_map(t_main *win)
 			else if (win->map[y][x] == '1')
 				ft_put_image_to_image(&win->map_img, &win->wall,  x * 50, y * 50);
 			else if (win->map[y][x] == 'P')
+			{
+				ft_put_image_to_image(&win->map_img, &win->ground, x * 50, y * 50);
 				ft_put_image_to_image(&win->map_img, &win->player_right, x * 50, y * 50);
+			}
 		}
 	}
 	for (int j = 0;win->map[j];j++)
