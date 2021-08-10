@@ -6,7 +6,7 @@
 /*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 18:54:18 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/09 19:38:23 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/10 18:18:05 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	ft_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x *
-		(data->bits_per_pixel / 8));
+	dst = data->addr + y * data->line_length + x * (data->bits_per_pixel / 8);
 	*(unsigned int*)dst = color;
 }
 
@@ -39,10 +38,10 @@ void	ft_put_image_to_image(t_sprite *dest, t_sprite *src, int x, int y)
 	img_dst.addr = mlx_get_data_addr(dest->img, &img_dst.bits_per_pixel,
 		&img_dst.line_length, &img_dst.endian);
 	yy = 0;
-	while (yy < dest->height)
+	while (yy < src->height)
 	{
 		xx = 0;
-		while (xx < dest->width)
+		while (xx < src->width)
 		{
 			ft_pixel_put(&img_dst, xx + x, yy + y,
 					ft_pixel_get(&img_src, xx, yy));
