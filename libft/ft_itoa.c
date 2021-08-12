@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:23:46 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/04/02 17:20:40 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/09 18:18:50 by bledda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 static	int	ft_itoa_size(int n)
 {
 	int	size;
-	int	neg;
 
 	size = 0;
-	neg = 0;
 	if (n < 0 && n > -2147483648)
 	{
-		neg = 1;
 		size++;
 		n = -n;
 	}
