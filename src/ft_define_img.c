@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_define_img.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 18:54:54 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/09 19:47:59 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/12 23:04:43 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ void	ft_define_img(t_main *win)
 		&win->player_right.width, &win->player_right.height);
 	win->player_right2.img = mlx_xpm_file_to_image(win->mlx_ptr, "img/player_right2.xpm",
 		&win->player_right2.width, &win->player_right2.height);
+	win->exit.img = mlx_xpm_file_to_image(win->mlx_ptr, "img/closed_door.xpm",
+		&win->exit.width, &win->exit.height);
 }

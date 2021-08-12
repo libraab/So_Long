@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bledda <bledda@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/10 18:13:32 by bledda           ###   ########.fr       */
+/*   Updated: 2021/08/13 00:01:45 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,21 @@ typedef struct	s_data
       int     height;
  }           t_sprite;
 
+ typedef struct s_pos
+ {
+	 int	x;
+	 int 	y;
+ }			t_pos;
+
 typedef struct s_main
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		step;
+	t_pos	player_pos;
 	t_sprite	ground;
 	t_sprite	wall;
+	t_sprite	exit;
 	t_sprite	player_up;
 	t_sprite	player_down;
 	t_sprite	player_left;
