@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/13 00:01:45 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/16 19:20:25 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ typedef struct s_main
 	int		step;
 	t_pos	player_pos;
 	t_sprite	ground;
+	t_sprite	ha;
 	t_sprite	wall;
 	t_sprite	exit;
+	t_sprite	exit_out;
 	t_sprite	player_up;
 	t_sprite	player_down;
 	t_sprite	player_left;
@@ -65,5 +67,6 @@ typedef struct s_main
 void	ft_put_image_to_image(t_sprite *dest, t_sprite *src, int x, int y);
 void	ft_define_img(t_main *win);
 int	ft_parsing(t_main *win, char *file);
+
 
 #endif
