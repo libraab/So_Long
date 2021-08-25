@@ -6,89 +6,42 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/16 19:51:15 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/25 20:02:08 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
-#include "../header/mlx_keycode.h"
 
-int nocolectible_is_true(char **map)
+int	nocolectible_is_true(char **map)
 {
-	int y = -1;
-	int x = -1;
+	int	x;
+	int	y;
 
+	y = -1;
 	while (map[++y])
+	{
+		x = -1;
 		while (map[y][++x])
 			if (map[y][x] == 'C')
 				return (0);
+	}
 	return (1);
-}
-
-void	ft_print_map(t_main *win)
-{
-	int y;
-	int x;
-	int j;
-
-	y = -1;
-	while (win->map[++y])
-	{
-		x = -1;
-		while (win->map[y][++x])
-		{
-			if (win->map[y][x] == '0')
-				ft_put_image_to_image(&win->map_img, &win->ground, x * 50, y * 50);
-			else if (win->map[y][x] == '1')
-				ft_put_image_to_image(&win->map_img, &win->wall,  x * 50, y * 50);
-			else if (win->map[y][x] == 'E')
-			{
-				if (nocolectible_is_true(win->map))
-				{
-					ft_put_image_to_image(&win->map_img, &win->ground, x * 50, y * 50);
-					ft_put_image_to_image(&win->map_img, &win->exit_out, x * 50, y * 50);
-				}
-				else
-				{
-					ft_put_image_to_image(&win->map_img, &win->ground, x * 50, y * 50);
-					ft_put_image_to_image(&win->map_img, &win->exit,  x * 50, y * 50);
-				}
-			}
-			else if (win->map[y][x] == 'C')
-			{
-				ft_put_image_to_image(&win->map_img, &win->ground, x * 50, y * 50);
-				ft_put_image_to_image(&win->map_img, &win->ha, x * 50, y * 50);
-			}
-			else if (win->map[y][x] == 'P')
-			{
-				ft_put_image_to_image(&win->map_img, &win->ground, x * 50, y * 50);
-				ft_put_image_to_image(&win->map_img, &win->player_right, x * 50, y * 50);
-				win->player_pos.x = x * 50;
-				win->player_pos.y = y * 50;
-			}
-		}
-	}
-	j = 0;
-	while (win->map[j])
-	{
-		printf("%s\n", win->map[j]);
-		j++;
-	}
 }
 
 int	get_height(char *file)
 {
-	int fd;
-	int count;
-	char *line;
+	int		fd;
+	int		count;
+	char	*line;
 
 	count = 0;
-	fd =  open(file, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
 		count++;
 		free(line);
 	}
+	free(line);
 	count++;
 	close (fd);
 	return (count);
@@ -96,12 +49,12 @@ int	get_height(char *file)
 
 int	get_width(char *file)
 {
-	int fd;
-	int i;
-	char *line;
+	int		fd;
+	int		i;
+	char	*line;
 
 	i = 0;
-	fd =  open(file, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	get_next_line(fd, &line);
 	i = ft_strlen(line);
 	free(line);
@@ -109,84 +62,50 @@ int	get_width(char *file)
 	return (i);
 }
 
-int deal_key(int key, t_main *win)
+int release_key(int key, t_main *win)//work here
 {
-	ft_put_image_to_image(&win->map_img, &win->ground, win->player_pos.x, win->player_pos.y);
-   if (key == KEY_ECHAP)
+	if (key == KEY_ECHAP)
         exit(53);
-	else if (key == KEY_A)
+	if (!win->victory)
 	{
-		if (win->player_pos.x >= 50
-			&& win->map[win->player_pos.y / 50][win->player_pos.x / 50 - 1] != '1' && win->map[win->player_pos.y / 50][win->player_pos.x / 50 - 1] != 'E')
-			win->player_pos.x -= 50;
-		else if (win->player_pos.x >= 50
-			&& win->map[win->player_pos.y / 50][win->player_pos.x / 50 - 1] != '1' && nocolectible_is_true(win->map))
-			win->player_pos.x -= 50;
-	}
-	else if (key == KEY_D)
-	{
-		if (win->player_pos.x >= 50
-			&& win->map[win->player_pos.y / 50][win->player_pos.x / 50 + 1] != '1' && win->map[win->player_pos.y / 50][win->player_pos.x / 50 + 1] != 'E')
-			win->player_pos.x += 50;
-		else if (win->player_pos.x >= 50
-			&& win->map[win->player_pos.y / 50][win->player_pos.x / 50 + 1] != '1' && nocolectible_is_true(win->map))
-			win->player_pos.x += 50;
-	}
-	else if (key == KEY_W)
-	{
-		if (win->player_pos.y >= 50
-			&& win->map[win->player_pos.y / 50 - 1][win->player_pos.x / 50] != '1' && win->map[win->player_pos.y / 50 - 1][win->player_pos.x / 50] != 'E')
-			win->player_pos.y -= 50;
-		else if (win->player_pos.y >= 50
-			&& win->map[win->player_pos.y / 50 - 1][win->player_pos.x / 50] != '1' && nocolectible_is_true(win->map))
-			win->player_pos.y -= 50;
-	}
-	else if (key == KEY_S)
-	{
-		if (win->player_pos.y >= 50
-			&& win->map[win->player_pos.y / 50 + 1][win->player_pos.x / 50] != '1' && win->map[win->player_pos.y / 50 + 1][win->player_pos.x / 50] != 'E')
-			win->player_pos.y += 50;
-		else if (win->player_pos.y >= 50
-			&& win->map[win->player_pos.y / 50 + 1][win->player_pos.x / 50] != '1' && nocolectible_is_true(win->map))
-			win->player_pos.y += 50;
-	}
-	ft_put_image_to_image(&win->map_img, &win->player_right, win->player_pos.x, win->player_pos.y);
-
-	if (win->map[win->player_pos.y / 50][win->player_pos.x / 50] == 'C')
-		win->map[win->player_pos.y / 50][win->player_pos.x / 50] = '0';
-	
-	if (nocolectible_is_true(win->map))
-	{
-		ft_put_image_to_image(&win->map_img, &win->player_right, win->player_pos.x, win->player_pos.y);
-		/*if (win->map[win->player_pos.y / 50][win->player_pos.x / 50] == 'E')
-			ft_game_over();*/
-	}
-	int y_win = 0; //camera position when moving 
-	int x_win = 0;
-		
-		if (win->player_pos.y > 400)
+		ft_put_image_to_image(&win->map_img, &win->ground, win->player_pos.x, win->player_pos.y);
+		if (key == KEY_A)
 		{
-			if (win->player_pos.y > win->map_img.height - 350)
-				y_win = - win->map_img.height + 550;
-			else
-				y_win = - win->player_pos.y + 200;
 			
+			ft_put_image_to_image(&win->map_img, &win->player_left, win->player_pos.x, win->player_pos.y);
 		}
-		if (win->player_pos.x > 450)
+		else if (key == KEY_D)
 		{
-			if (win->player_pos.x > win->map_img.width - 350)
-			 	x_win = - win->map_img.width + 500;
+			if (win->state_pose)
+			{
+				win->state_pose = 0;
+				ft_put_image_to_image(&win->map_img, &win->player_right, win->player_pos.x, win->player_pos.y);
+			}
 			else
-				x_win = - win->player_pos.x + 200;
+			{
+				win->state_pose = 1;
+				ft_put_image_to_image(&win->map_img, &win->player_right2, win->player_pos.x, win->player_pos.y);
+			}
 		}
-	mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->map_img.img, x_win, y_win);
-    return (0);
+		else if (key == KEY_W)
+		{
+			ft_put_image_to_image(&win->map_img, &win->player_up, win->player_pos.x, win->player_pos.y);
+		}
+		else if (key == KEY_S)
+		{
+			
+			ft_put_image_to_image(&win->map_img, &win->player_down, win->player_pos.x, win->player_pos.y);
+		}
+	}
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_main	win;
 
+	win.victory = 0;
+	win.state_pose = 0;
 	if (ac != 2)
 		return (0);
 	win.mlx_ptr = mlx_init();
@@ -206,27 +125,12 @@ int	main(int ac, char **av)
 			win.win_ptr = mlx_new_window(win.mlx_ptr, 500, 500, "so_long");
 		win.map_img.img = mlx_new_image(win.mlx_ptr, win.map_img.width, win.map_img.height);
 		ft_print_map(&win);
-		mlx_hook(win.win_ptr, 2, 1L<<0, deal_key, &win);
-		
-		int y_win = 0; //camera starting position 
-		int x_win = 0;
-		
-		if (win.player_pos.y > 450)
-		{
-			if (win.player_pos.y > win.map_img.height - 350)
-				y_win = - win.map_img.height + 500;
-			else
-				y_win = - win.player_pos.y + 200;
-		}
-		if (win.player_pos.x > 450)
-		{
-			if (win.player_pos.x > win.map_img.width - 350)
-			 	x_win = - win.map_img.width + 500;
-			else
-				x_win = - win.player_pos.x + 200;
-		}
-		mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, win.map_img.img, x_win, y_win);
+		mlx_hook(win.win_ptr, 2, 1L << 0, deal_key, &win);
+		mlx_hook(win.win_ptr, 3, 1L << 1, release_key, &win);
+		ft_camera(&win, 0);
 		mlx_loop(win.mlx_ptr);
 	}
+	while (1)
+		;
 	return (0);
 }

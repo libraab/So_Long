@@ -6,51 +6,54 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/16 19:20:25 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/23 21:10:16 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
 
-#include "mlx.h"
-#include "../libft/libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# define	SO_LONG_H
 
-typedef struct	s_data
+# include "mlx.h"
+# include "../libft/libft.h"
+# include "../header/mlx_keycode.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
+typedef struct s_data
 {
-	char		*addr;
+	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}			t_data;
 
- typedef struct s_sprite
- {
-      void    *img;
-      int     width;
-      int     height;
- }           t_sprite;
+typedef struct s_sprite
+{
+	void	*img;
+	int		width;
+	int		height;
+}	t_sprite;
 
- typedef struct s_pos
- {
-	 int	x;
-	 int 	y;
- }			t_pos;
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_main
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		step;
-	t_pos	player_pos;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			step;
+	t_pos		player_pos;
 	t_sprite	ground;
 	t_sprite	ha;
+	t_sprite	pig;
 	t_sprite	wall;
 	t_sprite	exit;
 	t_sprite	exit_out;
@@ -61,12 +64,17 @@ typedef struct s_main
 	t_sprite	player_right;
 	t_sprite	player_right2;
 	t_sprite	map_img;
-	char	**map;
+	char		**map;
+	int			victory;
+	int			state_pose;
 }				t_main;
 
 void	ft_put_image_to_image(t_sprite *dest, t_sprite *src, int x, int y);
 void	ft_define_img(t_main *win);
-int	ft_parsing(t_main *win, char *file);
-
-
+void	ft_print_map(t_main *win);
+int		nocolectible_is_true(char **map);
+int		ft_parsing(t_main *win, char *file);
+int		deal_key(int key, t_main *win);
+int		ft_game_over(t_main *win, int x);
+void	ft_camera(t_main *win, int x);
 #endif

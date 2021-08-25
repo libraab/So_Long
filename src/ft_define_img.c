@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 18:54:54 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/16 18:10:59 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/17 11:32:19 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ void	ft_define_img(t_main *win)
 		&win->exit_out.width, &win->exit_out.height);
 	win->ha.img = mlx_xpm_file_to_image(win->mlx_ptr, "img/gold.xpm",
 		&win->ha.width, &win->ha.height);
+	win->pig.img = mlx_xpm_file_to_image(win->mlx_ptr, "img/pig.xpm",
+		&win->pig.width, &win->pig.height);
 }
