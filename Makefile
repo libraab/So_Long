@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/09 17:44:09 by bledda            #+#    #+#              #
-#    Updated: 2021/08/17 14:52:00 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/08/27 14:57:32 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ FOLDER				= src/
 HEADER_FILE 		= so_long.h
 
 SRCS				= main.c \
-						ft_put_image_to_image.c \
 						ft_define_img.c \
 						ft_parsing.c \
 						ft_deal_key.c \

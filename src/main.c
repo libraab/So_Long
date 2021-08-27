@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/25 20:02:08 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/27 21:19:07 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ int	nocolectible_is_true(char **map)
 int	get_height(char *file)
 {
 	int		fd;
-	int		count;
+	int		i;
 	char	*line;
 
-	count = 0;
+	i = 0;
 	fd = open(file, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
-		count++;
+		i++;
 		free(line);
 	}
+	i++;
 	free(line);
-	count++;
 	close (fd);
-	return (count);
+	return (i);
 }
 
 int	get_width(char *file)
@@ -57,12 +57,13 @@ int	get_width(char *file)
 	fd = open(file, O_RDONLY);
 	get_next_line(fd, &line);
 	i = ft_strlen(line);
+	//i++;
 	free(line);
 	close (fd);
 	return (i);
 }
 
-int release_key(int key, t_main *win)//work here
+int release_key(int key, t_main *win)
 {
 	if (key == KEY_ECHAP)
         exit(53);
@@ -108,13 +109,13 @@ int	main(int ac, char **av)
 	win.state_pose = 0;
 	if (ac != 2)
 		return (0);
-	win.mlx_ptr = mlx_init();
-	ft_define_img(&win);
 	if (ft_parsing(&win, av[1]))
 	{
-		printf ("%d %d\n", get_width(av[1]), get_height(av[1]));
+		printf("%d %d\n", get_width(av[1]), get_height(av[1]));
 		win.map_img.height = get_height(av[1]) * 50;
 		win.map_img.width = get_width(av[1]) * 50;
+		win.mlx_ptr = mlx_init();
+		ft_define_img(&win);
 		if (win.map_img.height < 500 && win.map_img.width < 500)
 			win.win_ptr = mlx_new_window(win.mlx_ptr, win.map_img.width, win.map_img.height, "so_long");
 		else if (win.map_img.width < 500)
@@ -123,14 +124,12 @@ int	main(int ac, char **av)
 			win.win_ptr = mlx_new_window(win.mlx_ptr, 500, win.map_img.height, "so_long");
 		else
 			win.win_ptr = mlx_new_window(win.mlx_ptr, 500, 500, "so_long");
-		win.map_img.img = mlx_new_image(win.mlx_ptr, win.map_img.width, win.map_img.height);
+		win.map_img.img = mlx_new_image(win.mlx_ptr, win.map_img.width + 50, win.map_img.height + 50);
 		ft_print_map(&win);
 		mlx_hook(win.win_ptr, 2, 1L << 0, deal_key, &win);
 		mlx_hook(win.win_ptr, 3, 1L << 1, release_key, &win);
-		ft_camera(&win, 0);
+		ft_camera(&win);
 		mlx_loop(win.mlx_ptr);
 	}
-	while (1)
-		;
 	return (0);
 }

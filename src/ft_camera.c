@@ -6,53 +6,34 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:40:02 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/25 20:16:40 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/27 21:18:43 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
 
-void	ft_camera(t_main *win, int x)
+void	ft_camera(t_main *win)
 {
-	int	x_win; 
-	int	y_win;
-    
-	x_win = 0;
-	y_win = 0;
+	int	x;
+	int	y;
 
-	if(x == 0)//starting position 
+	x = 0;
+	y = 0;
+	if (win->player_pos.y > 450)
 	{
-		if (win->player_pos.y > 450)
-		{
-			if (win->player_pos.y > win->map_img.height - 350)
-				y_win = - win->map_img.height + 500;
-			else
-				y_win = - win->player_pos.y + 200;
-		}
-		if (win->player_pos.x > 450)
-		{
-			if (win->player_pos.x > win->map_img.width - 350)
-				x_win = - win->map_img.width + 500;
-			else
-				x_win = - win->player_pos.x + 200;
-		}
+		if (win->player_pos.y > win->map_img.height - 350)
+			y = -win->map_img.height + 500;
+		else
+			y = -win->player_pos.y + 200;
 	}
-	if(x == 1)//moving position
-	{       
-		if (win->player_pos.y > 400)
-		{
-			if (win->player_pos.y > win->map_img.height - 350)
-				y_win = - win->map_img.height + 500;
-			else
-				y_win = - win->player_pos.y + 200;
-        }
-        if (win->player_pos.x > 450)
-        {
-        	if (win->player_pos.x > win->map_img.width - 350)
-            	x_win = - win->map_img.width + 500;
-            else
-        	    x_win = - win->player_pos.x + 200;
-        }
-    }
-    mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->map_img.img, x_win, y_win);
+	if (win->player_pos.x > 450)
+	{
+		if (win->player_pos.x > win->map_img.width - 350)
+			x = -win->map_img.width + 500;
+		else
+			x = -win->player_pos.x + 200;
+	}
+	if (!win->victory)
+		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
+			win->map_img.img, x, y);
 }

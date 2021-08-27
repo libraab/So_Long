@@ -6,13 +6,13 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/23 21:10:16 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/08/27 21:18:52 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 
-# define	SO_LONG_H
+# define SO_LONG_H
 
 # include "mlx.h"
 # include "../libft/libft.h"
@@ -76,5 +76,5 @@ int		nocolectible_is_true(char **map);
 int		ft_parsing(t_main *win, char *file);
 int		deal_key(int key, t_main *win);
 int		ft_game_over(t_main *win, int x);
-void	ft_camera(t_main *win, int x);
+void	ft_camera(t_main *win);
 #endif
