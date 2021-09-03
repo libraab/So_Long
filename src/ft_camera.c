@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 14:40:02 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/27 21:18:43 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/03 20:13:51 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ void	ft_camera(t_main *win)
 			x = -win->player_pos.x + 200;
 	}
 	if (!win->victory)
-		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
-			win->map_img.img, x, y);
+		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->map_img.img, x, y);
 }

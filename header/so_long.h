@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/27 21:18:52 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/03 20:28:11 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,20 @@ typedef struct s_main
 	t_sprite	pig;
 	t_sprite	wall;
 	t_sprite	exit;
-	t_sprite	exit_out;
-	t_sprite	player_up;
-	t_sprite	player_down;
-	t_sprite	player_left;
-	t_sprite	player_left2;
-	t_sprite	player_right;
-	t_sprite	player_right2;
+	t_sprite	exit2;
+	t_sprite	p_up;
+	t_sprite	p_down;
+	t_sprite	p_l;
+	t_sprite	p_l2;
+	t_sprite	p_r;
+	t_sprite	p_r2;
 	t_sprite	map_img;
 	char		**map;
 	int			victory;
 	int			state_pose;
 }				t_main;
 
-void	ft_put_image_to_image(t_sprite *dest, t_sprite *src, int x, int y);
+void	ft_put_img(t_sprite *dest, t_sprite *src, int x, int y);
 void	ft_define_img(t_main *win);
 void	ft_print_map(t_main *win);
 int		nocolectible_is_true(char **map);

@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/08/27 21:19:07 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/03 20:33:19 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	get_width(char *file)
 	fd = open(file, O_RDONLY);
 	get_next_line(fd, &line);
 	i = ft_strlen(line);
-	//i++;
 	free(line);
 	close (fd);
 	return (i);
@@ -69,33 +68,33 @@ int release_key(int key, t_main *win)
         exit(53);
 	if (!win->victory)
 	{
-		ft_put_image_to_image(&win->map_img, &win->ground, win->player_pos.x, win->player_pos.y);
+		ft_put_img(&win->map_img, &win->ground, win->player_pos.x, win->player_pos.y);
 		if (key == KEY_A)
 		{
 			
-			ft_put_image_to_image(&win->map_img, &win->player_left, win->player_pos.x, win->player_pos.y);
+			ft_put_img(&win->map_img, &win->p_l, win->player_pos.x, win->player_pos.y);
 		}
 		else if (key == KEY_D)
 		{
 			if (win->state_pose)
 			{
 				win->state_pose = 0;
-				ft_put_image_to_image(&win->map_img, &win->player_right, win->player_pos.x, win->player_pos.y);
+				ft_put_img(&win->map_img, &win->p_r, win->player_pos.x, win->player_pos.y);
 			}
 			else
 			{
 				win->state_pose = 1;
-				ft_put_image_to_image(&win->map_img, &win->player_right2, win->player_pos.x, win->player_pos.y);
+				ft_put_img(&win->map_img, &win->p_r2, win->player_pos.x, win->player_pos.y);
 			}
 		}
 		else if (key == KEY_W)
 		{
-			ft_put_image_to_image(&win->map_img, &win->player_up, win->player_pos.x, win->player_pos.y);
+			ft_put_img(&win->map_img, &win->p_up, win->player_pos.x, win->player_pos.y);
 		}
 		else if (key == KEY_S)
 		{
 			
-			ft_put_image_to_image(&win->map_img, &win->player_down, win->player_pos.x, win->player_pos.y);
+			ft_put_img(&win->map_img, &win->p_down, win->player_pos.x, win->player_pos.y);
 		}
 	}
 	return (0);
