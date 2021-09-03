@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 18:54:54 by bledda            #+#    #+#             */
-/*   Updated: 2021/08/27 21:23:37 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/03 18:45:21 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_define_img(t_main *win)
 	win->wall.img = mlx_xpm_file_to_image(win->mlx_ptr,
 			"img/wall.xpm", &win->wall.width, &win->wall.height);
 	win->player_up.img = mlx_xpm_file_to_image(win->mlx_ptr,
-			"img/player_up.xpm", &win->player_up.width, &win->player_up.height);
+			"img/p_up.xpm", &win->player_up.width, &win->player_up.height);
 	win->player_down.img = mlx_xpm_file_to_image(win->mlx_ptr,
 			"img/p_d.xpm", &win->player_down.width, &win->player_down.height);
 	win->player_left.img = mlx_xpm_file_to_image(win->mlx_ptr,
