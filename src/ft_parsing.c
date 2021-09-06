@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:08:11 by bledda            #+#    #+#             */
-/*   Updated: 2021/09/06 20:17:39 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 22:13:52 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_errors(int x)
 		write(2, "Error!\nBreach in wall.\n", 23);
 	if (x == 5)
 		write(2, "Error!\nMissing something.\n", 26);
+	if (x == 6)
+		write(2, "Error!\nTry with the right ARG number.\n", 38);
 	return (0);
 }
 

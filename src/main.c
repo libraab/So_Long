@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/06 21:56:16 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 22:14:53 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,8 @@ int	main(int ac, char **av)
 	win.state_pose = 0;
 	win.tot_steps = 0;
 	if (ac != 2)
-		return (0);
+		return (ft_errors(6));
 	if (ft_parsing(&win, av[1]))
 		ft_so_long(&win, av[1]);
-	else
-	{
-		write(2, "Error!\nNo Game for you.\n", 24);
-		return (0);
-	}
+	return (0);
 }
