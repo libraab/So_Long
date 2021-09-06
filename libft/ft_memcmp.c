@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 18:03:06 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/03/30 16:15:46 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 15:01:00 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*x;

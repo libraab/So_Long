@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/09 17:44:09 by bledda            #+#    #+#              #
-#    Updated: 2021/08/27 14:57:32 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/09/06 19:28:56 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,12 @@ HEADER_FILE 		= so_long.h
 SRCS				= main.c \
 						ft_define_img.c \
 						ft_parsing.c \
-						ft_deal_key.c \
+						ft_push_key.c \
 						ft_print_map.c \
 						ft_camera.c \
 						ft_game_over.c \
+						ft_key_moves.c \
+						ft_valid_map.c \
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})

@@ -6,13 +6,13 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/03 20:33:19 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 21:56:16 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
 
-int	nocolectible_is_true(char **map)
+int	ft_nocolectible_is_true(char **map)
 {
 	int	x;
 	int	y;
@@ -28,7 +28,7 @@ int	nocolectible_is_true(char **map)
 	return (1);
 }
 
-int	get_height(char *file)
+int	ft_get_height(char *file)
 {
 	int		fd;
 	int		i;
@@ -47,7 +47,7 @@ int	get_height(char *file)
 	return (i);
 }
 
-int	get_width(char *file)
+int	ft_get_width(char *file)
 {
 	int		fd;
 	int		i;
@@ -62,42 +62,31 @@ int	get_width(char *file)
 	return (i);
 }
 
-int release_key(int key, t_main *win)
+void	ft_so_long(t_main *win, char *av)
 {
-	if (key == KEY_ECHAP)
-        exit(53);
-	if (!win->victory)
-	{
-		ft_put_img(&win->map_img, &win->ground, win->player_pos.x, win->player_pos.y);
-		if (key == KEY_A)
-		{
-			
-			ft_put_img(&win->map_img, &win->p_l, win->player_pos.x, win->player_pos.y);
-		}
-		else if (key == KEY_D)
-		{
-			if (win->state_pose)
-			{
-				win->state_pose = 0;
-				ft_put_img(&win->map_img, &win->p_r, win->player_pos.x, win->player_pos.y);
-			}
-			else
-			{
-				win->state_pose = 1;
-				ft_put_img(&win->map_img, &win->p_r2, win->player_pos.x, win->player_pos.y);
-			}
-		}
-		else if (key == KEY_W)
-		{
-			ft_put_img(&win->map_img, &win->p_up, win->player_pos.x, win->player_pos.y);
-		}
-		else if (key == KEY_S)
-		{
-			
-			ft_put_img(&win->map_img, &win->p_down, win->player_pos.x, win->player_pos.y);
-		}
-	}
-	return (0);
+	printf("%d %d\n", ft_get_width(av), ft_get_height(av));
+	win->map_img.he = ft_get_height(av) * 50;
+	win->map_img.wi = ft_get_width(av) * 50;
+	win->mlx_ptr = mlx_init();
+	ft_define_img(win);
+	if (win->map_img.he < 500 && win->map_img.wi < 500)
+		win->win_ptr = mlx_new_window(win->mlx_ptr, win->map_img.wi,
+				win->map_img.he, "so_long");
+	else if (win->map_img.wi < 500)
+		win->win_ptr = mlx_new_window(win->mlx_ptr,
+				win->map_img.wi, 500, "so_long");
+	else if (win->map_img.he < 500)
+		win->win_ptr = mlx_new_window(win->mlx_ptr, 500,
+				win->map_img.he, "so_long");
+	else
+		win->win_ptr = mlx_new_window(win->mlx_ptr, 500, 500, "so_long");
+	win->map_img.img = mlx_new_image(win->mlx_ptr, win->map_img.wi + 50,
+			win->map_img.he + 50);
+	ft_print_map(win);
+	mlx_hook(win->win_ptr, 2, 1L << 0, ft_deal_key, win);
+	mlx_hook(win->win_ptr, 3, 1L << 1, ft_release_key, win);
+	ft_camera(win);
+	mlx_loop(win->mlx_ptr);
 }
 
 int	main(int ac, char **av)
@@ -106,29 +95,14 @@ int	main(int ac, char **av)
 
 	win.victory = 0;
 	win.state_pose = 0;
+	win.tot_steps = 0;
 	if (ac != 2)
 		return (0);
 	if (ft_parsing(&win, av[1]))
+		ft_so_long(&win, av[1]);
+	else
 	{
-		printf("%d %d\n", get_width(av[1]), get_height(av[1]));
-		win.map_img.height = get_height(av[1]) * 50;
-		win.map_img.width = get_width(av[1]) * 50;
-		win.mlx_ptr = mlx_init();
-		ft_define_img(&win);
-		if (win.map_img.height < 500 && win.map_img.width < 500)
-			win.win_ptr = mlx_new_window(win.mlx_ptr, win.map_img.width, win.map_img.height, "so_long");
-		else if (win.map_img.width < 500)
-			win.win_ptr = mlx_new_window(win.mlx_ptr, win.map_img.width, 500, "so_long");
-		else if (win.map_img.height < 500)
-			win.win_ptr = mlx_new_window(win.mlx_ptr, 500, win.map_img.height, "so_long");
-		else
-			win.win_ptr = mlx_new_window(win.mlx_ptr, 500, 500, "so_long");
-		win.map_img.img = mlx_new_image(win.mlx_ptr, win.map_img.width + 50, win.map_img.height + 50);
-		ft_print_map(&win);
-		mlx_hook(win.win_ptr, 2, 1L << 0, deal_key, &win);
-		mlx_hook(win.win_ptr, 3, 1L << 1, release_key, &win);
-		ft_camera(&win);
-		mlx_loop(win.mlx_ptr);
+		write(2, "Error!\nNo Game for you.\n", 24);
+		return (0);
 	}
-	return (0);
 }

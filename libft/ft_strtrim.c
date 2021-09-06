@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 09:05:29 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/04/07 15:43:57 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 15:02:51 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str[i] = 0;
 	return (str);
 }
-/*#include <stdio.h>
-int main()
-{
-	char a[] = "ABCBhello_worldBAC";
-	char b[] = "ABC";
-	printf("%s", ft_strtrim(a, b));
-}*/

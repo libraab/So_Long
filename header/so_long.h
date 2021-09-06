@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/03 20:28:11 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 22:00:03 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_data
 typedef struct s_sprite
 {
 	void	*img;
-	int		width;
-	int		height;
+	int		wi;
+	int		he;
 }	t_sprite;
 
 typedef struct s_pos
@@ -50,7 +50,7 @@ typedef struct s_main
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			step;
-	t_pos		player_pos;
+	t_pos		p_pos;
 	t_sprite	ground;
 	t_sprite	ha;
 	t_sprite	pig;
@@ -64,17 +64,37 @@ typedef struct s_main
 	t_sprite	p_r;
 	t_sprite	p_r2;
 	t_sprite	map_img;
+	int			one_p;
+	int			tot_steps;
+	int			my_ha;
 	char		**map;
 	int			victory;
 	int			state_pose;
 }				t_main;
 
 void	ft_put_img(t_sprite *dest, t_sprite *src, int x, int y);
+int		ft_valid_walls(t_main *win, int linelen, int line_nb);
 void	ft_define_img(t_main *win);
 void	ft_print_map(t_main *win);
-int		nocolectible_is_true(char **map);
+int		ft_get_width(char *file);
+int		ft_get_height(char *file);
+int		ft_nocolectible_is_true(char **map);
 int		ft_parsing(t_main *win, char *file);
-int		deal_key(int key, t_main *win);
+int		ft_deal_key(int key, t_main *win);
 int		ft_game_over(t_main *win, int x);
 void	ft_camera(t_main *win);
+void	ft_up(t_main *win);
+void	ft_down(t_main *win);
+void	ft_left(t_main *win, int step);
+void	ft_right(t_main *win, int step);
+int		ft_valid_ext(char *file);
+int		ft_valid_chars(t_main *win, int count);
+int		ft_min_items(t_main *win);
+int		ft_release_key(int key, t_main *win);
+void	ft_so_long(t_main *win, char *av);
+int		ft_errors(int x);
+void	ft_print_exit(t_main *win, int x, int y);
+void	ft_print_player(t_main *win, int x, int y);
+void	ft_open_door(t_main *w);
+
 #endif

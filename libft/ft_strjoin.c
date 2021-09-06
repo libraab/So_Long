@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 09:20:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/03/30 16:18:58 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/06 15:01:55 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	unsigned int	i;
@@ -37,9 +38,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	all[i + j] = '\0';
 	return (all);
 }
-/*int main()
-{
-	char a[] = "anticonsti";
-	char b[] = "tutionnellement";
-	printf("%s", ft_strjoin(a, b));
-}*/
