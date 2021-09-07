@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:36:13 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/06 20:42:36 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:41:33 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ int	ft_valid_walls(t_main *win, int linelen, int line_nb)
 	x = 0;
 	y = 0;
 	if (((linelen < 5) && (line_nb < 3)) || ((linelen < 3) && (line_nb < 5)))
-		return (0);
+		return (ft_errors(7));
 	while (y++ < line_nb - 1)
 	{
 		while (win->map[0][x] != '\0')
 		{	
 			if (win->map[0][x++] != '1')
-				return (0);
+				return (ft_errors(4));
 		}
 		if (win->map[y][0] != '1' || win->map[y][linelen - 1] != '1')
-			return (0);
+			return (ft_errors(9));
 		x = 0;
 		while (win->map[line_nb - 1][x] != '\0')
 		{	
 			if (win->map[line_nb - 1][x++] != '1')
-				return (0);
+				return (ft_errors(8));
 		}
 	}
 	return (1);
@@ -101,5 +101,14 @@ int	ft_min_items(t_main *win)
 	}
 	if ((win->one_p != 1) || (e == 0) || (win->my_ha == 0))
 		return (0);
+	return (1);
+}
+
+int	ft_valid_rectangle(t_main *win, char *line)
+{
+	if (win->linelen == -1)
+		win->linelen = ft_strlen(line);
+	else if (win->linelen != (int)ft_strlen(line))
+		return (ft_errors(2));
 	return (1);
 }

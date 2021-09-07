@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:08:11 by bledda            #+#    #+#             */
-/*   Updated: 2021/09/06 22:13:52 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:48:21 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,57 +23,70 @@ int	ft_errors(int x)
 	if (x == 3)
 		write(2, "Error!\nWrong character.\n", 24);
 	if (x == 4)
-		write(2, "Error!\nBreach in wall.\n", 23);
+		write(2, "Error!\nBreach in upper wall.\n", 29);
 	if (x == 5)
-		write(2, "Error!\nMissing something.\n", 26);
+		write(2, "Error!\nWrong number of items.\n", 30);
 	if (x == 6)
 		write(2, "Error!\nTry with the right ARG number.\n", 38);
+	if (x == 7)
+		write(2, "Error!\nMap too small.\n", 22);
+	if (x == 8)
+		write(2, "Error!\nBreach in lower wall.\n", 29);
+	if (x == 9)
+		write(2, "Error!\nBreach in side wall.\n", 28);
 	return (0);
+}
+
+int	ft_stock_map(t_main *win, char *file, char *line, int count)
+{
+	int	i;
+	int	fd;
+	int	ret;
+
+	i = 0;
+	ret = 1;
+	fd = open(file, O_RDONLY);
+	win->map = ft_calloc(sizeof(char *), count + 1);
+	while (ret > 0)
+	{
+		ret = get_next_line(fd, &line);
+		win->map[i++] = ft_strdup(line);
+		if (!ft_valid_rectangle(win, line))
+			return (0);
+		free(line);
+	}
+	close (fd);
+	if (!ft_valid_chars(win, count))
+		return (ft_errors(3));
+	if (!ft_valid_walls(win, win->linelen, count))
+		return (0);
+	if (!ft_min_items(win))
+		return (ft_errors(5));
+	return (1);
 }
 
 int	ft_parsing(t_main *win, char *file)
 {
 	char	*line;
 	int		count;
-	int		linelen;
 	int		fd;
-	int		i;
 
 	count = 0;
+	win->linelen = -1;
 	if (!ft_valid_ext (file))
 		return (ft_errors(0));
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (ft_errors(1));
-	linelen = -1;
 	while (get_next_line(fd, &line) > 0)
 	{
 		count++;
-		if (linelen == -1)
-			linelen = ft_strlen(line);
-		else if (linelen != (int)ft_strlen(line))
-			return (ft_errors(2));//prob ne compare pas avec la derniere ligne
 		free(line);
 	}
 	free(line);
 	count++;
 	close (fd);
-	fd = open(file, O_RDONLY);
-	win->map = ft_calloc(sizeof(char *), count + 1);
-	i = 0;
-	while (get_next_line(fd, &line) > 0)
-	{
-		win->map[i++] = ft_strdup(line);
-		free(line);
-	}
-	win->map[i] = ft_strdup(line);
-	free(line);
-	close (fd);
-	if (!ft_valid_chars(win, count))
-		return (ft_errors(3));
-	if (!ft_valid_walls(win, linelen, count))
-		return (ft_errors(4));
-	if (!ft_min_items(win))
-		return (ft_errors(5));
+	if (!ft_stock_map(win, file, line, count))
+		return (0);
 	return (1);
 }

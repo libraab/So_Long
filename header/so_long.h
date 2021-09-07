@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/06 22:00:03 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 17:25:43 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_main
 	t_sprite	p_r;
 	t_sprite	p_r2;
 	t_sprite	map_img;
+	int			linelen;
 	int			one_p;
 	int			tot_steps;
 	int			my_ha;
@@ -96,5 +97,7 @@ int		ft_errors(int x);
 void	ft_print_exit(t_main *win, int x, int y);
 void	ft_print_player(t_main *win, int x, int y);
 void	ft_open_door(t_main *w);
+int		ft_valid_rectangle(t_main *win, char *line);
+int		ft_stock_map(t_main *win, char *file, char *line, int count);
 
 #endif
