@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/07 17:25:43 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:58:38 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_main
 	t_sprite	map_img;
 	int			linelen;
 	int			one_p;
-	int			tot_steps;
+	int			all_steps;
 	int			my_ha;
 	char		**map;
 	int			victory;

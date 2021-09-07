@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 21:33:12 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/06 22:03:28 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 18:57:53 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_deal_key(int key, t_main *w)
 		exit(53);
 	if (!w->victory)
 	{
-		printf("%d\n", step++);
+		step++;
 		if (key == KEY_A)
 			ft_left(w, step);
 		else if (key == KEY_D)

@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/06 22:14:53 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 20:02:39 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 
 	win.victory = 0;
 	win.state_pose = 0;
-	win.tot_steps = 0;
+	win.all_steps = 0;
 	if (ac != 2)
 		return (ft_errors(6));
 	if (ft_parsing(&win, av[1]))

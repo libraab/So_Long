@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 21:35:37 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/06 21:28:49 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/07 20:02:03 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_game_over(t_main *win, int x)
 	{
 		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
 			game_over.img, 0, 0);
+		printf("%d\n", ++win->all_steps);
 		printf("YOU WIN !!\nWOW SO TALENTED\nI'M IMPRESSED\n");
 	}
 	win->victory = 1;
