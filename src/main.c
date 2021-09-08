@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/07 20:02:39 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/08 21:53:20 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	ft_get_width(char *file)
 
 void	ft_so_long(t_main *win, char *av)
 {
-	printf("%d %d\n", ft_get_width(av), ft_get_height(av));
 	win->map_img.he = ft_get_height(av) * 50;
 	win->map_img.wi = ft_get_width(av) * 50;
 	win->mlx_ptr = mlx_init();
@@ -83,6 +82,7 @@ void	ft_so_long(t_main *win, char *av)
 	win->map_img.img = mlx_new_image(win->mlx_ptr, win->map_img.wi + 50,
 			win->map_img.he + 50);
 	ft_print_map(win);
+	mlx_hook(win->win_ptr, 17, 0, ft_exit, win);
 	mlx_hook(win->win_ptr, 2, 1L << 0, ft_deal_key, win);
 	mlx_hook(win->win_ptr, 3, 1L << 1, ft_release_key, win);
 	ft_camera(win);
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 
 	win.victory = 0;
 	win.state_pose = 0;
-	win.all_steps = 0;
+	win.all_steps = 1;
 	if (ac != 2)
 		return (ft_errors(6));
 	if (ft_parsing(&win, av[1]))

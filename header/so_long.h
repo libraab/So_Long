@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/07 18:58:38 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/09/08 21:58:24 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ void	ft_print_player(t_main *win, int x, int y);
 void	ft_open_door(t_main *w);
 int		ft_valid_rectangle(t_main *win, char *line);
 int		ft_stock_map(t_main *win, char *file, char *line, int count);
+int		ft_exit(int keycode, t_main *win);
+void	ft_is_dir(char *file);
 
 #endif
