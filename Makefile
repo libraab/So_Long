@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/09 17:44:09 by bledda            #+#    #+#              #
-#    Updated: 2021/10/23 11:11:15 by abouhlel         ###   ########.fr        #
+#    Updated: 2022/03/27 18:45:11 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME				= so_long
 #################### * F I L E S * #############################################
 FOLDER_HEADER		= header/
 FOLDER				= src/
+FOLDER_B			= src_bonus/
 
 HEADER_FILE 		= so_long.h
 
@@ -28,10 +29,22 @@ SRCS				= main.c \
 						ft_key_moves.c \
 						ft_valid_map.c \
 
+SRCS_B				= main_b.c \
+						ft_define_img_b.c \
+						ft_parsing_b.c \
+						ft_push_key_b.c \
+						ft_print_map_b.c \
+						ft_camera_b.c \
+						ft_game_over_b.c \
+						ft_key_moves_b.c \
+						ft_valid_map_b.c \
+
 SRC					= $(addprefix ${FOLDER},${SRCS})
+SRC_B				= $(addprefix ${FOLDER_B},${SRCS_B})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 
 OBJS				= ${SRC:.c=.o}
+OBJS_B				= ${SRC_B:.c=.o}
 ################################################################################
 
 #################### * C O M P I L A T I O N * #################################
@@ -41,6 +54,7 @@ RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 
 OBJ					= ${OBJS}
+OBJ_B				= ${OBJS_B}
 
 UNAME_S				= $(shell uname -s)
 
@@ -51,7 +65,8 @@ ifeq ($(UNAME_S),Darwin)
 	LIBS 			= -L ./libft -lft -lmlx -framework OpenGL -framework AppKit -lz
 endif
 
-COMPIL	= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
+COMPIL		= $(CC) $(CFLAGS) ${OBJ} $(LIBS) -o $(NAME)
+COMPIL_B	= $(CC) $(CFLAGS) ${OBJ_B} $(LIBS) -o $(NAME)
 ################################################################################
 
 ######################### * R U L E S * ########################################
@@ -71,11 +86,22 @@ all:		${NAME}
 			@$(CC) -c $(CFLAGS) -o $@ $<
 			@printf $(reset)
 
+bonus : 	${OBJ_B}
+			@printf $(blue)
+			@printf " Generating bonus objects... %-33.33s                                 \r" $@
+			@printf $(magenta)
+			$(MAKE_EXT) ./libft
+			@$(COMPIL_B)
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖                         \n"
+			@printf "🐷 BEWARE THE PIGS 🐷 \n"
+			@printf "➖➖➖➖➖➖➖➖➖➖➖➖\n"
+			@printf $(reset)
+
 re: 		fclean all
 
 clean:
 			$(MAKE_EXT) ./libft clean
-			@${RM} ${OBJ}
+			@${RM} ${OBJ} ${OBJ_B}
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
 			@printf $(reset)
@@ -87,7 +113,7 @@ fclean:		clean
 			@printf "Your folder is now clean 🧹\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re
+.PHONY: 	all clean fclean bonus re
 #################################################################################
 
 #################### * C O L O R *** S E T T I N G * ############################
