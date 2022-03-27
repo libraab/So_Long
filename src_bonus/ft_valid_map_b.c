@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:36:13 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 18:47:17 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:13:03 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	ft_valid_chars(t_main *win, int count)
 		{	
 			if (win->map[y][x] != '1' && win->map[y][x] != '0' && win->map[y]
 				[x] != 'E' && win->map[y][x] != 'P' && win->map[y][x] != 'C' && win->map[y][x] !='K')
+			{
+				printf("here \n");
 				return (0);
+			}
 			x++;
 		}
 		y++;

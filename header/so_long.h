@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 18:50:28 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/09/08 21:58:24 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:10:19 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int		ft_valid_rectangle(t_main *win, char *line);
 int		ft_stock_map(t_main *win, char *file, char *line, int count);
 int		ft_exit(int keycode, t_main *win);
 void	ft_is_dir(char *file);
+int	ft_ennemy_move(t_main *win);
 
 #endif

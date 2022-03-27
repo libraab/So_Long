@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/13 17:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 18:59:33 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:19:18 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,11 @@ void	ft_so_long(t_main *win, char *av)
 			win->map_img.he + 50);
 	ft_print_map(win);
 	mlx_hook(win->win_ptr, 17, 0, ft_exit, win);
-	mlx_loop_hook(win->win_ptr, ft_ennemy_move, win);
 	mlx_hook(win->win_ptr, 2, 1L << 0, ft_deal_key, win);
 	mlx_hook(win->win_ptr, 3, 1L << 1, ft_release_key, win);
 	ft_camera(win);
+	printf("here");
+	//mlx_loop_hook(win->win_ptr, ft_ennemy_move, win);
 	mlx_loop(win->mlx_ptr);
 }
 

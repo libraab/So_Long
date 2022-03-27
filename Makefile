@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/09 17:44:09 by bledda            #+#    #+#              #
-#    Updated: 2022/03/27 18:45:11 by abouhlel         ###   ########.fr        #
+#    Updated: 2022/03/27 20:15:07 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJS_B				= ${SRC_B:.c=.o}
 
 #################### * C O M P I L A T I O N * #################################
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror
+CFLAGS  			= -Wall -Wextra -Werror 
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 

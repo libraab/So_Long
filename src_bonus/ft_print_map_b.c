@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 10:48:15 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 19:00:33 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 20:18:34 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,34 @@ void	ft_print_map(t_main *win)
 	}
 }
 
-ft_ennemy_move(t_main *win)
+int	ft_ennemy_move(t_main *win)
 {
-	
+	static int x = 0;
+	int i;
+	int j;
+
+	i = 0;
+	while (win->map[i])
+	{
+		j = 0;
+		while(win->map[i][j])
+		{
+			if (win->map[i][j] == 'K' && x == 0)
+			{
+				win->map[i][j] = '0';
+				win->map[i][j - 1] = 'K';
+				x++;
+			}
+			else if (win->map[i][j] == 'K' && x > 0)
+			{
+				win->map[i][j] = '0';
+				win->map[i][j + 1] = 'K';
+				x--;
+			}
+			j++;
+		}
+		i++;
+	}
+	ft_print_map(win);
+	return (0);
 }
